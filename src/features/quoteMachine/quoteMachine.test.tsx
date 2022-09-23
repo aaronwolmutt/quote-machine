@@ -12,4 +12,10 @@ describe('QuoteMachine unit tests', () => {
     render(<QuoteMachine />)
     expect(quotesAPI).toHaveBeenCalledTimes(1)
   })
+  it('polls the getQuote API on 1 second intervals', async () => {
+    const quotesAPI = jest.spyOn(quotesApi, 'getQuote')
+    render(<QuoteMachine />)
+    await new Promise((res, rej) => setTimeout(res, 1500))
+    await expect(quotesAPI).toHaveBeenCalledTimes(2)
+  })
 })

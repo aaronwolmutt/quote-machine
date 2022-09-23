@@ -9,6 +9,13 @@ function QuoteMachine (): JSX.Element {
   useEffect(() => {
     dispatch(fetchQuote())
   }, [])
+
+  useEffect(() => {
+    const interval = setInterval(() => dispatch(fetchQuote()), 1000)
+    return () => {
+      clearInterval(interval)
+    }
+  }, [])
   return (
     <>
       <h1>Quotes machine</h1>
