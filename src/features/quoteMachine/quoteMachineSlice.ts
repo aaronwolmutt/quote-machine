@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import type { RootState } from '../../app/store'
 import { quotesApi } from './quotesAPI'
 import { QuoteMachineState } from './quoteMachine.interface'
 
