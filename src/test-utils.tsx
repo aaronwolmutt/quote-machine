@@ -1,3 +1,4 @@
+/* eslint no-use-before-define: 0 */
 import React from 'react'
 import { render as rtlRender } from '@testing-library/react'
 import { configureStore } from '@reduxjs/toolkit'
@@ -6,6 +7,7 @@ import { BrowserRouter } from 'react-router-dom'
 import quotesReducer from './features/quoteMachine/quoteMachineSlice'
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+// @ts-ignore
 function render (
   ui,
   {

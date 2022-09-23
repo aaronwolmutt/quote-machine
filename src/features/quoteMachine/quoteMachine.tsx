@@ -1,24 +1,26 @@
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { fetchQuote } from './quoteMachineSlice'
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
 
 function QuoteMachine (): JSX.Element {
-  const quoteState = useSelector((state: any) => state.quotes)
-  const dispatch = useDispatch()
+  const quoteState = useAppSelector((state: any) => state.quotes)
+  const dispatch = useAppDispatch()
 
-  useEffect(() => {
-    dispatch(fetchQuote())
+  // @ts-expect-error
+  useEffect(async () => {
+    await dispatch(fetchQuote())
   }, [])
 
   useEffect(() => {
-    const interval = setInterval(() => dispatch(fetchQuote()), 1000)
+    // eslint-disable-next-line @typescript-eslint/no-misused-promises
+    const interval = setInterval(async () => await dispatch(fetchQuote()), 1000)
     return () => {
       clearInterval(interval)
     }
   }, [])
   return (
     <>
-      <h1>Quotes machine</h1>
+      <h1>{quoteState.currentQuote.content}</h1>
     </>
   )
 }
