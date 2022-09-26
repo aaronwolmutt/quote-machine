@@ -16,3 +16,9 @@ export interface Quote {
   dateAdded: Date
   dateModified: Date
 }
+
+export enum QuoteRequestStatus {
+  Success = 'Success',
+  Failed = 'Failed',
+  Loading = 'Loading'
+}

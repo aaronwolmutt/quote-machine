@@ -1,6 +1,6 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { quotesApi } from './quotesAPI'
-import { QuoteMachineState } from './quoteMachine.interface'
+import { QuoteMachineState, QuoteRequestStatus } from './quoteMachine.interface'
 
 export const fetchQuote =
   createAsyncThunk('quote/', async () => {
@@ -10,7 +10,7 @@ export const fetchQuote =
 
 const initialState: QuoteMachineState = {
   error: false,
-  status: 'loading'
+  status: QuoteRequestStatus.Loading
 }
 
 export const quotesSlice = createSlice({
@@ -21,15 +21,15 @@ export const quotesSlice = createSlice({
   },
   extraReducers: builder => {
     builder.addCase(fetchQuote.fulfilled, (state, action) => {
-      return { currentQuote: action.payload, status: 'success', error: false }
+      return { currentQuote: action.payload, status: QuoteRequestStatus.Success, error: false }
     })
     builder.addCase(fetchQuote.pending, (state, action) => {
-      return { ...state, status: 'loading', error: false }
+      return { ...state, status: QuoteRequestStatus.Loading, error: false }
     })
     builder.addCase(fetchQuote.rejected, (state, action) => {
       return {
         ...state,
-        status: 'failed',
+        status: QuoteRequestStatus.Failed,
         error: true,
         errorMessage: action.error.message
       }

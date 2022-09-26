@@ -6,7 +6,8 @@ export const store = configureStore({
     quotes: quotesReducer
   }
 })
-
+// @ts-expect-error
+export type AppStore = ReturnType<typeof store>
 export type AppDispatch = typeof store.dispatch
 export type RootState = ReturnType<typeof store.getState>
 // eslint-disable-next-line @typescript-eslint/no-invalid-void-type

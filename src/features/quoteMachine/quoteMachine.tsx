@@ -6,9 +6,8 @@ function QuoteMachine (): JSX.Element {
   const quoteState = useAppSelector((state: any) => state.quotes)
   const dispatch = useAppDispatch()
 
-  // @ts-expect-error
-  useEffect(async () => {
-    await dispatch(fetchQuote())
+  useEffect(() => {
+    void dispatch(fetchQuote())
   }, [])
 
   useEffect(() => {

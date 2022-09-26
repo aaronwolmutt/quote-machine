@@ -21,8 +21,12 @@
     "jsx": "react-jsx"
   },
   "exclude": [
-    "**/src/test-utils.tsx",
+    "./src/test-utils.tsx",
+    "./src/setupTests.ts",
     "**/*/*.test.ts",
-    "**/node_modules"
-  ]
+    "./node_modules"
+  ],
+  "compilerOptions": {
+    "skipLibCheck": true
+  }
 }
