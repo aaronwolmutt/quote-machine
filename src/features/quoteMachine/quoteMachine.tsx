@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { fetchQuote } from './quoteMachineSlice'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
+import { QuoteRequestStatus } from './quoteMachine.interface'
 
 function QuoteMachine (): JSX.Element {
   const quoteState = useAppSelector((state: any) => state.quotes)
@@ -19,7 +20,9 @@ function QuoteMachine (): JSX.Element {
   }, [])
   return (
     <>
-      <h1>{quoteState.currentQuote.content}</h1>
+      {quoteState.status === QuoteRequestStatus.Success &&
+        <h1>{quoteState.currentQuote.content}</h1>
+      }
     </>
   )
 }
