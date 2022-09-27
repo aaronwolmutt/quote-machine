@@ -2,10 +2,10 @@ import { rest } from 'msw'
 
 const mockJson = {
   _id: '00',
-  content: 'TEST',
-  author: 'TEST',
+  content: 'TEST_CONTENT',
+  author: 'TEST_AUTHOR',
   tags: ['TEST'],
-  authorSlug: 'TEST',
+  authorSlug: 'TEST_AUTHOR_SLUG',
   length: 0,
   dateAdded: '2019-02-13',
   dateModified: '2019-02-13'

@@ -5,6 +5,9 @@ import { createMemoryHistory } from 'history'
 import { BrowserRouter } from 'react-router-dom'
 import userEvent from '@testing-library/user-event'
 import { render } from '@testing-library/react'
+import { configureStore } from '@reduxjs/toolkit'
+import quotesReducer from './features/quoteMachine/quoteMachineSlice'
+import { Provider } from 'react-redux'
 
 describe('RootLayout tests', () => {
   it('renders to the DOM', () => {
@@ -15,14 +18,16 @@ describe('RootLayout tests', () => {
     const menuText = getByText('Quote Machine')
     expect(menuText).toBeInTheDocument()
   })
-  // @ts-ignore
+
   it('navigates to the home path when pressing the home icon', async () => {
+    const store = configureStore({ reducer: { quotes: quotesReducer } })
     const history = createMemoryHistory()
-    // @ts-expect-error
     const { getByText } = render(
-      <BrowserRouter location={history.location} navigator={history}>
-        <RootLayout />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter location={history.location} navigator={history}>
+          <RootLayout />
+        </BrowserRouter>
+      </Provider>
     )
     const homeTab = getByText('Quote Machine')
     await userEvent.click(homeTab)
