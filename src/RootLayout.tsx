@@ -1,17 +1,20 @@
 import React from 'react'
-import { Container } from '@mui/material'
+import { Container, Grid } from '@mui/material'
 import { Navigation } from './Navigation'
 import QuoteMachine from './features/quoteMachine/quoteMachine'
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-function RootLayout () {
+function RootLayout (): JSX.Element {
   return (
+   <>
+    <Navigation />
     <Container fixed>
-      <Navigation />
-      <Container fixed>
-        <QuoteMachine />
-      </Container>
+      <Grid container paddingTop={7}>
+        <Grid alignContent={'center'}>
+          <QuoteMachine />
+        </Grid>
+      </Grid>
     </Container>
+   </>
   )
 }
 export default RootLayout
