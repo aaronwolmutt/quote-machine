@@ -6,7 +6,7 @@ COPY . ./
 
 RUN npm install -g react-scripts && npm ci --production && npm run build
 
-FROM node:16
+FROM node:16-alpine
 
 COPY --from=builder ./app/build ./app/build
 COPY --from=builder ./app/deploy ./app
